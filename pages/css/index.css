@@ -1,0 +1,435 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #36393f;
+    color: #dcddde;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    display: flex;
+    height: 100vh;
+}
+
+/* Servers Sidebar */
+#servers-sidebar {
+    width: 220px;
+    min-width: 180px;
+    background: #202225;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 10px;
+    gap: 8px;
+}
+
+#home-button {
+    width: 48px;
+    height: 48px;
+    background: #5865f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+#server-search {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 0 0 4px 0;
+    border-radius: 6px;
+    border: none;
+    background: #40444b;
+    color: #dcddde;
+}
+
+/* Top-left stacked buttons */
+#top-left-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: calc(100% - 20px);
+}
+
+#top-left-controls .ghost-btn {
+    width: 100%;
+    text-align: left;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+}
+
+#toggle-show-all {
+    margin-top: 6px;
+    padding: 6px 8px;
+    background: #35393f;
+    color: #dcddde;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#servers-list {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.server-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.server-row:hover { background: #2a2c2f; }
+
+.server-icon {
+    width: 40px;
+    height: 40px;
+    background: #36393f;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+}
+
+.server-name {
+    color: #dcddde;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.server-desc {
+    color: #b9bbbe;
+    font-size: 0.8rem;
+}
+
+.server-icon:hover {
+    border-radius: 16px;
+}
+
+.server-star {
+    position: relative;
+}
+
+.server-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #f04747;
+    color: white;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 12px;
+}
+
+/* Adjust badge placement for server rows */
+.server-row .server-badge {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+}
+
+#add-server {
+    width: 48px;
+    height: 48px;
+    background: #36393f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Channels Sidebar */
+#channels-sidebar {
+    width: 240px;
+    background: #2f3136;
+    display: flex;
+    flex-direction: column;
+}
+
+#server-name {
+    height: 48px;
+    padding: 12px;
+    border-bottom: 1px solid #202225;
+    font-weight: bold;
+}
+
+#channels-list {
+    flex: 1;
+    padding: 8px;
+}
+
+.channel {
+    padding: 4px 8px;
+    margin: 2px 0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.channel:hover {
+    background: #40444b;
+}
+
+.channel.selected {
+    background: #40444b;
+}
+
+#add-channel {
+    padding: 8px;
+    cursor: pointer;
+    text-align: center;
+    border-top: 1px solid #202225;
+}
+
+#logout-button {
+    padding: 8px;
+    background: #f04747;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin: 8px;
+    border-radius: 4px;
+}
+
+/* Chat Area */
+#chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #36393f;
+}
+
+#chat-header {
+    height: 48px;
+    padding: 12px;
+    border-bottom: 1px solid #202225;
+    font-weight: bold;
+}
+
+#messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.message {
+    margin-bottom: 16px;
+}
+
+.message .username {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.timestamp {
+    color: #72767d;
+    font-size: 0.8em;
+    margin-left: 8px;
+}
+
+.message .content {
+    margin-top: 4px;
+}
+
+#message-input {
+    padding: 16px;
+    border-top: 1px solid #202225;
+    display: flex;
+}
+
+#message-text {
+    flex: 1;
+    padding: 8px 12px;
+    background: #40444b;
+    border: none;
+    border-radius: 4px;
+    color: #dcddde;
+}
+
+#send-button {
+    margin-left: 8px;
+    padding: 8px 16px;
+    background: #5865f2;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Users Sidebar */
+#users-sidebar {
+    width: 240px;
+    background: #2f3136;
+    display: flex;
+    flex-direction: column;
+}
+
+#users-header {
+    height: 48px;
+    padding: 12px;
+    border-bottom: 1px solid #202225;
+    font-weight: bold;
+}
+
+#users-controls {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+#users-list {
+    flex: 1;
+    padding: 8px;
+}
+
+.user {
+    padding: 4px 8px;
+    margin: 2px 0;
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background: #36393f;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Button styles */
+.danger-btn {
+    background: #f04747;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: #5865f2;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ghost-btn {
+    background: transparent;
+    color: #dcddde;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Online indicator */
+.online-dot {
+    width: 10px;
+    height: 10px;
+    background: #43b581;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* Add-friend button that appears on message hover */
+.add-friend-btn {
+    display: none;
+    margin-left: 8px;
+    background: #2f3136;
+    color: #dcddde;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.message:hover .add-friend-btn { display: inline-block; }
+
+/* Bottom nav */
+#bottom-nav {
+    position: fixed;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) translateY(60%);
+    background: rgba(32,34,37,0.95);
+    padding: 6px;
+    border-radius: 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 2000;
+    transition: transform 200ms ease, opacity 200ms ease;
+    opacity: 0.85;
+}
+
+#bottom-nav button {
+    background: #2f3136;
+    border: none;
+    color: #dcddde;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Collapsed-by-default: hide most text, expand on hover */
+#bottom-nav button {
+    max-width: 56px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-width 200ms ease, transform 150ms ease;
+}
+
+#bottom-nav:hover {
+    transform: translateX(-50%) translateY(0%);
+    opacity: 1;
+}
+
+#bottom-nav:hover button {
+    max-width: 200px;
+    transform: scale(1.02);
+}
+
+/* Make the nav more intrusive when expanded so it can obstruct content (as requested)
+   — it overlays content with a slight backdrop */
+#bottom-nav:after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: -8px; bottom: -8px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    pointer-events: none;
+}
+
+/* Message delete button */
+.message .delete-btn {
+    margin-left: 8px;
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 0.85em;
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "General",
+    "description": "General community server",
+    "icon": "G",
+    "ownerId": 0,
+    "starred": true,
+    "unread": 0,
+    "channels": [
+      { "id": 11, "name": "general", "type": "text", "messages": [] },
+      { "id": 12, "name": "random", "type": "text", "messages": [] }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Posts",
+    "description": "A place to share posts",
+    "icon": "P",
+    "ownerId": 0,
+    "starred": false,
+    "unread": 0,
+    "channels": [
+      { "id": 21, "name": "announcements", "type": "text", "messages": [] }
+    ]
+  }
+]

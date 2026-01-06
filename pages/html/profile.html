@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2 id="title">Profile</h2>
+    <div id="profileArea"></div>
+    <p><a href="../../index.html">Back</a></p>
+  </div>
+  <script>
+    function qs(param) {
+      const u = new URL(window.location.href);
+      return u.searchParams.get(param);
+    }
+    const id = Number(qs('id')) || null;
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    let user = null;
+    if (id) user = users.find(u => u.id === id);
+    else user = JSON.parse(localStorage.getItem('currentUser'));
+    if (!user) { document.getElementById('profileArea').innerText = 'User not found'; }
+    else {
+      document.getElementById('title').innerText = `${user.username} - Profile`;
+      const area = document.getElementById('profileArea');
+      area.innerHTML = `<p><strong>Username:</strong> ${user.username}</p>`;
+      // If viewing own profile, show delete account
+      const cur = JSON.parse(localStorage.getItem('currentUser') || 'null');
+      if (cur && cur.id === user.id) {
+        const btn = document.createElement('button');
+        btn.className = 'danger-btn';
+        btn.innerText = 'Delete Account';
+        btn.onclick = () => {
+          if (!confirm('Delete your account and all owned servers? This cannot be undone.')) return;
+          // remove user from users
+          const all = JSON.parse(localStorage.getItem('users') || '[]');
+          const remaining = all.filter(u => u.id !== user.id);
+          localStorage.setItem('users', JSON.stringify(remaining));
+          // remove their servers
+          const servers = JSON.parse(localStorage.getItem('servers') || '[]').filter(s => s.ownerId !== user.id);
+          localStorage.setItem('servers', JSON.stringify(servers));
+          // remove from friends lists
+          const friends = JSON.parse(localStorage.getItem('friends') || '[]').filter(id => id !== user.id);
+          localStorage.setItem('friends', JSON.stringify(friends));
+          // clear currentUser and redirect to signup
+          localStorage.removeItem('currentUser');
+          alert('Account deleted');
+          window.location.href = 'signup.html';
+        };
+        area.appendChild(btn);
+      } else {
+        // allow adding friend from profile
+        const friends = JSON.parse(localStorage.getItem('friends') || '[]');
+        if (!friends.includes(user.id)) {
+          const fbtn = document.createElement('button');
+          fbtn.className = 'primary-btn';
+          fbtn.innerText = 'Add Friend';
+          fbtn.onclick = () => {
+            friends.push(user.id);
+            localStorage.setItem('friends', JSON.stringify(friends));
+            alert('Friend added');
+          };
+          area.appendChild(fbtn);
+        } else {
+          const span = document.createElement('span'); span.innerText = 'Already a friend'; area.appendChild(span);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

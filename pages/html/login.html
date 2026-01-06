@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in to Clip Clap</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <h2>Sign in</h2>
+        <div class="login-box">
+            <form id="loginForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+                
+                <button type="submit" class="btn-signin">Sign in</button>
+            </form>
+        </div>
+        <div class="signup-box">
+            <p>New to Clip Clap? <a href="signup.html">Create an account</a>.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const foundUser = users.find(u => u.username === user && u.password === pass);
+            if (foundUser) {
+                localStorage.setItem('currentUser', JSON.stringify(foundUser));
+                alert("Login successful!");
+                window.location.href = "../../index.html"; // Send to home page
+            } else {
+                alert("Invalid username or password.");
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chit Chat</title>
+    <link rel="stylesheet" href="pages/css/index.css">
+  </head>
+  <body>
+    <div id="app">
+      <div id="servers-sidebar">
+        <div id="top-left-controls">
+          <button id="top-settings" class="ghost-btn">Settings</button>
+          <button id="top-friends" class="ghost-btn">Friends</button>
+        </div>
+        <div id="home-button">🏠</div>
+        <input id="server-search" placeholder="Search servers" />
+        <div id="servers-list"></div>
+        <div id="add-server">+</div>
+        <button id="toggle-show-all" title="Show all servers">All</button>
+      </div>
+      <div id="channels-sidebar">
+        <div id="server-name"></div>
+        <div id="channels-list"></div>
+        <div id="add-channel">+</div>
+        <button id="delete-server" title="Delete server" class="danger-btn">Delete Server</button>
+        <button id="logout-button">Logout</button>
+      </div>
+      <div id="chat-area">
+        <div id="chat-header">
+          <span id="channel-name"></span>
+        </div>
+        <div id="messages"></div>
+        <div id="message-input">
+          <input type="text" id="message-text" placeholder="Message #channel">
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+      <div id="users-sidebar">
+        <div id="users-header">Online - {count}</div>
+        <div id="users-list"></div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <div id="bottom-nav">
+      <button id="nav-home">Home</button>
+      <button id="nav-recs">Recs</button>
+      <button id="nav-friends">Friends</button>
+      <button id="nav-notes">Notifications (<span id="note-count">0</span>)</button>
+    </div>
+  </body>
+</html>

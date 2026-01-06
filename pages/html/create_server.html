@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Create Server</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="login-body">
+  <div class="login-container">
+    <h2>Create Server</h2>
+    <form id="createServerForm">
+      <label for="name">Server Name</label>
+      <input id="name" required />
+      <label for="description">Description</label>
+      <input id="description" required />
+      <label for="icon">Icon (single char, optional)</label>
+      <input id="icon" maxlength="1" />
+      <button type="submit">Create</button>
+    </form>
+    <p><a href="../../index.html">Back</a></p>
+  </div>
+
+  <script>
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser) window.location.href = 'login.html';
+    document.getElementById('createServerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const icon = document.getElementById('icon').value.trim();
+      if (!name || !description) { alert('Name and description required'); return; }
+      const servers = JSON.parse(localStorage.getItem('servers') || '[]');
+      const myCount = servers.filter(s => s.ownerId === currentUser.id).length;
+      if (myCount >= 5) { alert('Server creation limit reached (5). Delete one to create another.'); return; }
+      const server = { id: Date.now(), name, description, icon: icon ? icon[0] : name[0].toUpperCase(), ownerId: currentUser.id, starred: false, unread: 0, roles: [], channels: [{ id: Date.now()+1, name: 'general', type: 'text', messages: [] }] };
+      servers.push(server);
+      localStorage.setItem('servers', JSON.stringify(servers));
+      window.location.href = '../../index.html';
+    });
+  </script>
+</body>
+</html>
